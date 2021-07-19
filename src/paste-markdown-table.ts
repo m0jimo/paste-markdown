@@ -55,6 +55,14 @@ function hasFile(transfer: DataTransfer): boolean {
 
 function columnText(column: Element): string {
   const noBreakSpace = '\u00A0'
+  // console.log('---column', column, column.innerHTML)
+  const pattern = /<a.*?href="(.*?)".*?>(.*?)<\/a>/g
+  const matches = column.innerHTML.match(pattern)
+  if (matches) {
+    const colAsLink = matches.map(i => i.replace(pattern, '[$2]($1)'))
+    // console.log('---new text', new_text[0])
+    return colAsLink[0] || noBreakSpace
+  }
   const text = (column.textContent || '').trim().replace(/\|/g, '\\|').replace(/\n/g, ' ')
   return text || noBreakSpace
 }

@@ -7,8 +7,8 @@
   "module": "dist/index.esm.js",
   "types": "dist/index.d.ts",
   "scripts": {
-    "clean": "rm -rf dist",
-    "lint": "eslint src/*.ts test/*.js",
+    "clean": "rd /s /q dist",
+    "lint": "eslint src/*.ts test/*.js --fix",
     "prebuild": "npm run clean && npm run lint && mkdir dist",
     "build": "rollup -c",
     "pretest": "npm run build",
